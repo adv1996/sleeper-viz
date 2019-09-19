@@ -9,6 +9,9 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "d3": "^5.12.0",
+    "lodash": "^4.17.15",
+    "tailwindcss": "^1.1.2",
     "vue": "^2.6.10"
   },
   "devDependencies": {
