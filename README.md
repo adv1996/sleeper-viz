@@ -1,5 +1,7 @@
 # sleeper-viz
 
+![Week 2 Scoring Breakdown](src/assets/scoring_breakdown_example.png)
+
 ## Project setup
 ```
 yarn install

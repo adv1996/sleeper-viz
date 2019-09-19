@@ -8,6 +8,8 @@
   /* eslint-disable */
   import _ from 'lodash';
   import * as d3 from 'd3';
+
+  // outputted files from backend script for week 2
   import Scores from '../data/output_week2.json';
 
   export default {
@@ -27,20 +29,27 @@
         let height = this.height
         let width = this.width
         let positions = ["QB", "RB", "WR", "TE", "FLEX", "K"]
+
+        // sets svg with appropriate height and width
+        // TODO should be responsive and mobile friendly
         let svg = d3.select('#scoring')
           .attr('width', width)
           .attr('height', height)
         
+        // Group inside svg for the main visualization
         const g = svg.append('g')
           .attr('transform', "translate(" + this.margin.left + "," + this.margin.top + ")")
           .attr('class', 'main_group')
         
+        // Text for Title
         svg.append('text')
           .attr('x', 38)
           .attr('y', 15)
           .text('Week 2 Scoring Breakdown')
           .style('text-anchor', 'start')
-        // needed to just get the values of json without the keys
+
+        // combine positons and calculate sub totals
+        // TODO move this processing to the backend
         let data = _.map(Scores["players"], (d) => {
           return {
             "QB": d["scores"]["QB"],
@@ -56,26 +65,33 @@
         })
 
         data = _.orderBy(data, ['sub_points'], ['desc'])
-        let sums = _.map(data, (d) => {
-          let total = 0
-          _.forEach(positions, (p) => {
-            total = total + d[p]
-          })
-          return total
-        })
-        let xMax = _.max(sums)
+
+        let xMax = _.maxBy(data, 'sub_points')['sub_points']
+
+        // hardcoded range for length of bars
+        // TODO make responsive
         let rightRange = 200
+
+        // Scale to transpose bars over a certain range (30 - rightRange)
         let xScale = d3.scaleLinear()
           .domain([0, xMax])
           .range([30, rightRange])
-        // groups for each linear gauge
+
+        // https://github.com/d3/d3-shape/blob/v1.3.5/README.md#stack
+        // D3 stack will combine all positions as if they were one bar
+        // the results will dictate the starting point and ending point for each position
+        // ex. [{"QB": 5, "WR": 10}]
+        // roughly something like this stack output [[0,5],[5, 15]]
         let stack = d3.stack()
           .keys(positions)
           .order(d3.stackOrderNone)
           .offset(d3.stackOffsetNone)
         
+        // handle the actual stacking of our data
         let series = stack(data)
 
+        // creates a g (group) for each position
+        // here we specify the color of each position (left to right)
         let gauges = g.selectAll('gauges')
           .data(series)
           .enter().append('g')
@@ -83,13 +99,13 @@
             return this.colors[i]
           })
 
+        // creates a rectangle for each pairing in the stack
         let bars = gauges.selectAll('gauge')
           .data((d) => {
             return d
           })
           .enter().append('rect')
           .attr('x', (d) => {
-            console.log(d[0])
             return xScale(d[0])
           })
           .attr('y', (d, i) => {
@@ -99,6 +115,7 @@
           .attr('width', (d) => xScale(d[1]) - xScale(d[0]))
           .attr('height', 10)
         
+        // fetches the avatar images on the left of the group
         g.selectAll('avatars')
           .data(data)
           .enter()
@@ -110,7 +127,10 @@
           .attr('height', 17)
           .attr('x', (d) => 0)
           .attr('y', (d, i) => i * 25 - 5)
-        // legend colors
+
+        // Legend 
+
+        // create a rectangle for each color
         g.append('g')
           .attr('class', 'legends')
           .selectAll('bars')
@@ -125,6 +145,7 @@
             .attr('fill', (d) => {return d})
             // .attr('stroke', 'black')
 
+        // create a label for each position will coincide with color
         g.append('g')
           .attr('class', 'labels')
           .selectAll('label')
@@ -138,6 +159,7 @@
             .style('font-size', '10px')
             .style('text-anchor', 'middle')
         
+        // append the sub_points the right of each gauge (top-bottom)
         g.append('g')
           .attr('class', 'points')
           .selectAll('points')
