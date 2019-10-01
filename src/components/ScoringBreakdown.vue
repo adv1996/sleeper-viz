@@ -10,7 +10,7 @@
   import * as d3 from 'd3';
 
   // outputted files from backend script for week 2
-  import Scores from '../data/output_week2.json';
+  import Scores from '../data/week4_output.json';
 
   export default {
     data() {
@@ -42,25 +42,26 @@
           .attr('class', 'main_group')
         
         // Text for Title
+        // TODO need to get automatic week # from output file
         svg.append('text')
           .attr('x', 38)
           .attr('y', 15)
-          .text('Week 2 Scoring Breakdown')
+          .text('Week 4 Scoring Breakdown')
           .style('text-anchor', 'start')
 
         // combine positons and calculate sub totals
         // TODO move this processing to the backend
         let data = _.map(Scores["players"], (d) => {
           return {
-            "QB": d["scores"]["QB"],
-            "RB": d["scores"]["RB1"] + d["scores"]["RB2"],
-            "WR": d["scores"]["WR1"] + d["scores"]["WR2"],
-            "TE": d["scores"]["TE"],
-            "FLEX": d["scores"]["FLEX"],
-            "K": d["scores"]["K"],
+            "QB": d["scores"]["QB-0"] > 0 ? d["scores"]["RB-0"] : 0,
+            "RB": d["scores"]["RB-0"] + d["scores"]["RB-1"],
+            "WR": d["scores"]["WR-0"] + d["scores"]["WR-1"],
+            "TE": d["scores"]["TE-0"],
+            "FLEX": d["scores"]["FLEX-0"],
+            "K": d["scores"]["K-0"],
             "avatar": d["avatar"],
             "points": d["points"],
-            "sub_points": d["scores"]["QB"] + d["scores"]["RB1"] + d["scores"]["RB2"] + d["scores"]["WR1"] + d["scores"]["WR2"] + d["scores"]["TE"] + d["scores"]["FLEX"] + d["scores"]["K"]
+            "sub_points": d["scores"]["QB-0"] + d["scores"]["RB-0"] + d["scores"]["RB-1"] + d["scores"]["WR-0"] + d["scores"]["WR-1"] + d["scores"]["TE-0"] + d["scores"]["FLEX-0"] + d["scores"]["K-0"]
           }
         })
 
@@ -112,7 +113,9 @@
             // hardcoded
             return i * 25
           })
-          .attr('width', (d) => xScale(d[1]) - xScale(d[0]))
+          .attr('width', (d) => {
+            return xScale(d[1]) - xScale(d[0])
+          })
           .attr('height', 10)
         
         // fetches the avatar images on the left of the group
@@ -169,7 +172,7 @@
             .attr('y', (d, i) => i * 25 + 8)
             .text((d) => d["sub_points"].toFixed(0))
             .style('font-size', '10px')
-            .style('text-anchor', 'middle')
+            .style('text-anchor', 'start')
       }
     },
   }
