@@ -5,7 +5,8 @@
 </template>
 
 <script>
-import ScoringBreakdown from './components/ScoringBreakdown.vue'
+// import ScoringBreakdown from './components/ScoringBreakdown.vue'
+import ScoringBreakdown from './components/PointsForAgainst.vue'
 
 export default {
   name: 'app',

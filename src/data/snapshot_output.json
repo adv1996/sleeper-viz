@@ -1,0 +1,88 @@
+{
+  "players": [
+    {
+      "owner_id": "94862074874052608",
+      "avatar": "fed35eef4b71cc48b383db68b9ef0c31",
+      "wins": 2,
+      "fpts_against": 431,
+      "fpts": 430
+    },
+    {
+      "owner_id": "459203311979982848",
+      "avatar": "5808fda7d6bbad03d9c4d86ad09858de",
+      "wins": 2,
+      "fpts_against": 464,
+      "fpts": 449
+    },
+    {
+      "owner_id": "459204170327519232",
+      "avatar": "c12081c2c6366ace8a5d0edf94e2a424",
+      "wins": 1,
+      "fpts_against": 515,
+      "fpts": 429
+    },
+    {
+      "owner_id": "459204239567089664",
+      "avatar": "bf515f6cc01d885e392afeb2ff630b45",
+      "wins": 0,
+      "fpts_against": 464,
+      "fpts": 407
+    },
+    {
+      "owner_id": "84410011107082240",
+      "avatar": "nfl_atl",
+      "wins": 1,
+      "fpts_against": 396,
+      "fpts": 379
+    },
+    {
+      "owner_id": "459213847593480192",
+      "avatar": "405213591fe488220f2f4f79d9cc28eb",
+      "wins": 3,
+      "fpts_against": 433,
+      "fpts": 445
+    },
+    {
+      "owner_id": "459213594102329344",
+      "avatar": "01c04ca76901ee11c22403f45cdc2196",
+      "wins": 2,
+      "fpts_against": 376,
+      "fpts": 361
+    },
+    {
+      "owner_id": "459230826802966528",
+      "avatar": "44f3b4c9c0ee942dff8b28703a716105",
+      "wins": 3,
+      "fpts_against": 372,
+      "fpts": 475
+    },
+    {
+      "owner_id": "459204048109694976",
+      "avatar": "2ead65c4f31252eba2de9c0bade0d4b4",
+      "wins": 3,
+      "fpts_against": 356,
+      "fpts": 433
+    },
+    {
+      "owner_id": "459429256129146880",
+      "avatar": "0b99d6cc26aa7519e37cdfb269184da3",
+      "wins": 3,
+      "fpts_against": 435,
+      "fpts": 496
+    },
+    {
+      "owner_id": "459439456710029312",
+      "avatar": "4fb394f49d806fbad75dd79ecc68f525",
+      "wins": 3,
+      "fpts_against": 446,
+      "fpts": 488
+    },
+    {
+      "owner_id": "459443167217840128",
+      "avatar": "2892c880ba6c8384e628e50639dd8809",
+      "wins": 1,
+      "fpts_against": 467,
+      "fpts": 364
+    }
+  ]
+}

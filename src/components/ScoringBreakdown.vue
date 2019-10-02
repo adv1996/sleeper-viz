@@ -18,7 +18,7 @@
         height: 600,
         width: 400,
         margin: {top: 30, right: 20, bottom: 20, left: 20},
-        colors: ['#8dd3c7','#ffffb3','#bebada','#fb8072','#80b1d3','#fdb462']
+        colors: ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c']
       }
     },
     mounted () {
@@ -53,7 +53,7 @@
         // TODO move this processing to the backend
         let data = _.map(Scores["players"], (d) => {
           return {
-            "QB": d["scores"]["QB-0"] > 0 ? d["scores"]["RB-0"] : 0,
+            "QB": d["scores"]["QB-0"] > 0 ? d["scores"]["QB-0"] : 0,
             "RB": d["scores"]["RB-0"] + d["scores"]["RB-1"],
             "WR": d["scores"]["WR-0"] + d["scores"]["WR-1"],
             "TE": d["scores"]["TE-0"],
