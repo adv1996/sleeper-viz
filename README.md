@@ -1,6 +1,6 @@
 # sleeper-viz
 
-![Week 2 Scoring Breakdown](src/assets/scoring_breakdown_example.png)
+![Week 1 Scoring Breakdown](src/assets/scoring_breakdown_example.png)
 
 ![Points For/Against](src/assets/points_for_against.png)
 
