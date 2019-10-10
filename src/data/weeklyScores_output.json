@@ -1,0 +1,364 @@
+{
+  "games": [
+    {
+      "roster_id": 1,
+      "points": 160.62,
+      "week": "5",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 5,
+      "points": 77.94,
+      "week": "5",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 2,
+      "points": 92.9,
+      "week": "5",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 12,
+      "points": 116.02,
+      "week": "5",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 3,
+      "points": 122.04,
+      "week": "5",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 7,
+      "points": 81.34,
+      "week": "5",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 4,
+      "points": 127.66,
+      "week": "5",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 8,
+      "points": 152.82,
+      "week": "5",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 6,
+      "points": 88.44,
+      "week": "5",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 10,
+      "points": 173.4,
+      "week": "5",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 9,
+      "points": 118.46,
+      "week": "5",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 11,
+      "points": 149.04,
+      "week": "5",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 1,
+      "points": 111.38,
+      "week": "4",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 11,
+      "points": 139.8,
+      "week": "4",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 2,
+      "points": 131.58,
+      "week": "4",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 10,
+      "points": 135.78,
+      "week": "4",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 3,
+      "points": 112.7,
+      "week": "4",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 9,
+      "points": 75.4,
+      "week": "4",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 4,
+      "points": 79.08,
+      "week": "4",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 12,
+      "points": 98.8,
+      "week": "4",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 5,
+      "points": 55.0,
+      "week": "4",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 7,
+      "points": 86.86,
+      "week": "4",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 6,
+      "points": 107.08,
+      "week": "4",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 8,
+      "points": 87.02,
+      "week": "4",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 1,
+      "points": 71.4,
+      "week": "3",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 9,
+      "points": 137.06,
+      "week": "3",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 2,
+      "points": 79.12,
+      "week": "3",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 8,
+      "points": 118.74,
+      "week": "3",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 3,
+      "points": 105.86,
+      "week": "3",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 5,
+      "points": 148.74,
+      "week": "3",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 4,
+      "points": 130.82,
+      "week": "3",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 6,
+      "points": 133.48,
+      "week": "3",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 7,
+      "points": 106.58,
+      "week": "3",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 11,
+      "points": 105.14,
+      "week": "3",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 10,
+      "points": 138.96,
+      "week": "3",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 12,
+      "points": 91.82,
+      "week": "3",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 1,
+      "points": 94.16,
+      "week": "2",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 7,
+      "points": 70.3,
+      "week": "2",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 2,
+      "points": 110.32,
+      "week": "2",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 4,
+      "points": 106.12,
+      "week": "2",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 3,
+      "points": 126.7,
+      "week": "2",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 11,
+      "points": 137.56,
+      "week": "2",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 5,
+      "points": 74.36,
+      "week": "2",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 9,
+      "points": 98.04,
+      "week": "2",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 6,
+      "points": 100.92,
+      "week": "2",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 12,
+      "points": 87.62,
+      "week": "2",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 8,
+      "points": 120.56,
+      "week": "2",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 10,
+      "points": 99.3,
+      "week": "2",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 1,
+      "points": 153.42,
+      "week": "1",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 3,
+      "points": 84.24,
+      "week": "1",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 2,
+      "points": 128.04,
+      "week": "1",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 6,
+      "points": 104.22,
+      "week": "1",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 4,
+      "points": 91.84,
+      "week": "1",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 10,
+      "points": 122.16,
+      "week": "1",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 5,
+      "points": 101.8,
+      "week": "1",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 11,
+      "points": 106.22,
+      "week": "1",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 7,
+      "points": 97.9,
+      "week": "1",
+      "outcome": "loss"
+    },
+    {
+      "roster_id": 9,
+      "points": 122.62,
+      "week": "1",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 8,
+      "points": 148.9,
+      "week": "1",
+      "outcome": "win"
+    },
+    {
+      "roster_id": 12,
+      "points": 86.62,
+      "week": "1",
+      "outcome": "loss"
+    }
+  ]
+}

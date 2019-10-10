@@ -1,0 +1,88 @@
+{
+  "players": [
+    {
+      "owner_id": "{9D9A3BF2-0F13-4114-9A3B-F20F13311401}",
+      "avatar": "https://cdn.shopify.com/s/files/1/1685/1815/products/hat1_530x.jpg?v=1483732316",
+      "wins": 4,
+      "fpts_against": 324.8,
+      "fpts": 478.3
+    },
+    {
+      "owner_id": "{9B5EAD9D-4AAC-459D-9EAD-9D4AAC759DC4}",
+      "avatar": "https://g.espncdn.com/lm-static/logo-packs/core/DIS_Avengers_EndGame/DIS_Avengers_EndGame_War_Machine.svg",
+      "wins": 4,
+      "fpts_against": 419.14,
+      "fpts": 473.46
+    },
+    {
+      "owner_id": "{5F295485-B810-4971-AF96-BB62E3145273}",
+      "avatar": "https://g.espncdn.com/lm-static/logo-packs/core/Solo/ESPN_Star_Wars_Chebacca-01.svg",
+      "wins": 1,
+      "fpts_against": 494.15999999999997,
+      "fpts": 408.35999999999996
+    },
+    {
+      "owner_id": "{68787D83-336B-491E-92A4-6F96349754D7}",
+      "avatar": "https://g.espncdn.com/lm-static/ffl/images/default_logos/1.svg",
+      "wins": 2,
+      "fpts_against": 427.5,
+      "fpts": 465.32
+    },
+    {
+      "owner_id": "{1D4D348E-B3EF-4C70-8D34-8EB3EFCC7034}",
+      "avatar": "https://g.espncdn.com/lm-static/ffl/images/default_logos/12.svg",
+      "wins": 3,
+      "fpts_against": 388.98,
+      "fpts": 441.7
+    },
+    {
+      "owner_id": "{F0843EF1-DE53-4B8F-843E-F1DE53FB8F6E}",
+      "avatar": "https://g.espncdn.com/lm-static/logo-packs/core/RalphBreaksTheInternet/ralph-04.svg",
+      "wins": 2,
+      "fpts_against": 410.74,
+      "fpts": 467.98
+    },
+    {
+      "owner_id": "{8215F4A4-0D19-4A46-95F4-A40D19FA4637}",
+      "avatar": "https://g.espncdn.com/lm-static/logo-packs/ffl/AtTheStadium-RobbHarskamp/At_The_Stadium_01.svg",
+      "wins": 2,
+      "fpts_against": 440.98,
+      "fpts": 453.22
+    },
+    {
+      "owner_id": "{F1BC7E0C-11E1-4F04-BBAA-3D05B71E91E9}",
+      "avatar": "https://g.espncdn.com/lm-static/ffl/images/default_logos/6.svg",
+      "wins": 3,
+      "fpts_against": 410.4,
+      "fpts": 426.52000000000004
+    },
+    {
+      "owner_id": "{C74477F4-D1EB-4B07-8477-F4D1EBEB075B}",
+      "avatar": "http://sportige.com/wp-content/uploads/2017/09/Matt-Ryan-Mechanic-Meme-e1505762650612.jpg",
+      "wins": 0,
+      "fpts_against": 473.5,
+      "fpts": 382.78
+    },
+    {
+      "owner_id": "{4FB039C3-4032-4AD8-92F8-4CAD00D10A35}",
+      "avatar": "https://g.espncdn.com/lm-static/ffl/images/default_logos/19.svg",
+      "wins": 0,
+      "fpts_against": 511.06,
+      "fpts": 371.26
+    },
+    {
+      "owner_id": "{0A343F82-5AB9-46EA-9814-7A8FA57C4850}",
+      "avatar": "https://g.espncdn.com/lm-static/ffl/images/default_logos/20.svg",
+      "wins": 1,
+      "fpts_against": 448.29999999999995,
+      "fpts": 346.78000000000003
+    },
+    {
+      "owner_id": "{73D3C88D-F9BA-4CB1-93C8-8DF9BA7CB132}",
+      "avatar": "https://i.imgur.com/vdpovzd.png",
+      "wins": 2,
+      "fpts_against": 387.7,
+      "fpts": 421.58
+    }
+  ]
+}
