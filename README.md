@@ -1,8 +1,6 @@
 # sleeper-viz
 
 ![Animated Scoring Breakdown](src/assets/ff-positionalBreakdown-v3.gif)
-![Week 1 Scoring Breakdown](src/assets/scoring_breakdown_example.png)
-
 ![Points For/Against](src/assets/ff-pointsForAgainst-v2.png)
 
 ## Project setup
