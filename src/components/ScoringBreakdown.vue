@@ -10,13 +10,13 @@
   import * as d3 from 'd3';
 
   // outputted files from backend script for week 2
-  import Scores from '../data/week5_output.json';
+  import Scores from '../data/week6_output.json';
 
   export default {
     data() {
       return {
         height: 600,
-        width: 800,
+        width: 750,
         margin: {top: 30, right: 50, bottom: 100, left: 30},
         colors: ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c'],
         transitionFlag: false,
@@ -49,7 +49,7 @@
         svg.append('text')
           .attr('x', 38)
           .attr('y', 15)
-          .text('Week 5 Positional Scoring Breakdown')
+          .text('Week 6 Positional Scoring Breakdown')
           .style('text-anchor', 'start')
 
         // combine positons and calculate sub totals

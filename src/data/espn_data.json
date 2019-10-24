@@ -1,0 +1,187 @@
+{
+  "gameId": 1,
+  "id": 1501330,
+  "members": [
+    {
+      "displayName": "ihavenoideawhathisis",
+      "id": "{0A343F82-5AB9-46EA-9814-7A8FA57C4850}",
+      "isLeagueManager": false
+    },
+    {
+      "displayName": "osurox98",
+      "id": "{1D4D348E-B3EF-4C70-8D34-8EB3EFCC7034}",
+      "isLeagueManager": false
+    },
+    {
+      "displayName": "espn56036432",
+      "id": "{4FB039C3-4032-4AD8-92F8-4CAD00D10A35}",
+      "isLeagueManager": false
+    },
+    {
+      "displayName": "jsterdawg72",
+      "id": "{5F295485-B810-4971-AF96-BB62E3145273}",
+      "isLeagueManager": false
+    },
+    {
+      "displayName": "sports5924572",
+      "id": "{68787D83-336B-491E-92A4-6F96349754D7}",
+      "isLeagueManager": false
+    },
+    {
+      "displayName": "Reddy 2 Win",
+      "id": "{73D3C88D-F9BA-4CB1-93C8-8DF9BA7CB132}",
+      "isLeagueManager": false
+    },
+    {
+      "displayName": "Stacks on Decker",
+      "id": "{8215F4A4-0D19-4A46-95F4-A40D19FA4637}",
+      "isLeagueManager": false
+    },
+    {
+      "displayName": "advaithv",
+      "id": "{9B5EAD9D-4AAC-459D-9EAD-9D4AAC759DC4}",
+      "isLeagueManager": false
+    },
+    {
+      "displayName": "MVerdello58",
+      "id": "{9D9A3BF2-0F13-4114-9A3B-F20F13311401}",
+      "isLeagueManager": false
+    },
+    {
+      "displayName": "Nick06743",
+      "id": "{C74477F4-D1EB-4B07-8477-F4D1EBEB075B}",
+      "isLeagueManager": false
+    },
+    {
+      "displayName": "Soham7",
+      "id": "{F0843EF1-DE53-4B8F-843E-F1DE53FB8F6E}",
+      "isLeagueManager": false
+    },
+    {
+      "displayName": "hoop293",
+      "id": "{F1BC7E0C-11E1-4F04-BBAA-3D05B71E91E9}",
+      "isLeagueManager": false
+    }
+  ],
+  "scoringPeriodId": 5,
+  "seasonId": 2019,
+  "segmentId": 0,
+  "settings": {
+    "name": "TCAN Big Brains"
+  },
+  "status": {
+    "currentMatchupPeriod": 5,
+    "isActive": true,
+    "latestScoringPeriod": 5
+  },
+  "teams": [
+    {
+      "abbrev": "MIKE",
+      "id": 1,
+      "location": "The_",
+      "nickname": "Darnold",
+      "owners": [
+        "{9D9A3BF2-0F13-4114-9A3B-F20F13311401}"
+      ]
+    },
+    {
+      "abbrev": "VENK",
+      "id": 2,
+      "location": "Rich Homie",
+      "nickname": "Quon",
+      "owners": [
+        "{9B5EAD9D-4AAC-459D-9EAD-9D4AAC759DC4}"
+      ]
+    },
+    {
+      "abbrev": "BBNR",
+      "id": 3,
+      "location": ".",
+      "nickname": "Biggest of Bens",
+      "owners": [
+        "{5F295485-B810-4971-AF96-BB62E3145273}"
+      ]
+    },
+    {
+      "abbrev": "LJ8",
+      "id": 4,
+      "location": "New Year",
+      "nickname": "Same Run CMC",
+      "owners": [
+        "{68787D83-336B-491E-92A4-6F96349754D7}"
+      ]
+    },
+    {
+      "abbrev": "ALAN",
+      "id": 5,
+      "location": "The 2019 Kansas",
+      "nickname": "City Chiefs",
+      "owners": [
+        "{1D4D348E-B3EF-4C70-8D34-8EB3EFCC7034}"
+      ]
+    },
+    {
+      "abbrev": "HAM",
+      "id": 6,
+      "location": "Mr.",
+      "nickname": "Big Brain",
+      "owners": [
+        "{F0843EF1-DE53-4B8F-843E-F1DE53FB8F6E}"
+      ]
+    },
+    {
+      "abbrev": "GARD",
+      "id": 7,
+      "location": "Room 9's",
+      "nickname": " Fridge",
+      "owners": [
+        "{8215F4A4-0D19-4A46-95F4-A40D19FA4637}"
+      ]
+    },
+    {
+      "abbrev": "SHEA",
+      "id": 8,
+      "location": "Dan Snyder's",
+      "nickname": "Medical Staff",
+      "owners": [
+        "{F1BC7E0C-11E1-4F04-BBAA-3D05B71E91E9}"
+      ]
+    },
+    {
+      "abbrev": "SOSN",
+      "id": 9,
+      "location": "Saving",
+      "nickname": "Matt Ryan",
+      "owners": [
+        "{C74477F4-D1EB-4B07-8477-F4D1EBEB075B}"
+      ]
+    },
+    {
+      "abbrev": "LB",
+      "id": 10,
+      "location": "When the ",
+      "nickname": "Le\u2019Veon Breaks",
+      "owners": [
+        "{4FB039C3-4032-4AD8-92F8-4CAD00D10A35}"
+      ]
+    },
+    {
+      "abbrev": "Dum",
+      "id": 11,
+      "location": "Not a Fraud",
+      "nickname": "Actually Bad",
+      "owners": [
+        "{0A343F82-5AB9-46EA-9814-7A8FA57C4850}"
+      ]
+    },
+    {
+      "abbrev": "BB",
+      "id": 12,
+      "location": "Boom",
+      "nickname": "or Bust",
+      "owners": [
+        "{73D3C88D-F9BA-4CB1-93C8-8DF9BA7CB132}"
+      ]
+    }
+  ]
+}
