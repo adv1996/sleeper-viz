@@ -9,24 +9,52 @@
   import _ from 'lodash';
   import * as d3 from 'd3';
 
-  import scores from '../data/collated_stats.json';
-  import snapshot from '../data/snapshot_output.json';
+  import scores from '../data/data.json';
 
   export default {
     data() {
       return {
-        height: 700,
-        width: 800,
-        margin: {top: 40, right: 20, bottom: 20, left: 20}
+        height: 850,
+        width: 900,
+        margin: {top: 40, right: 20, bottom: 10, left: 20},
+        averagedPositionData: [],
+        positions: [],
+        maxPostionScore: 0
       }
     },
     mounted () {
-      this.initGraph();
+      this.initData()
+      this.initGraph()
     },
     methods: {
+      initData() {
+        this.positions = scores["settings"]["starters"]
+
+        this.averagedPositionData = _.map(scores["players"], (d) => {
+          let output = {}
+          let players = []
+          for (let pos in this.positions) {
+            let score = Math.round(_.meanBy(d["scores"], this.positions[pos]) * 100) / 100
+            if (score > this.maxPostionScore) { // might need to separate this out
+              this.maxPostionScore = score
+            }
+            players.push({
+              "position": this.positions[pos],
+              "score": score
+            })
+          }
+          output["players"] = players
+          output["wins"] = d["wins"]
+          output["display_name"] = d["display_name"]
+          return output
+        })
+
+        // move color logic here, flexible for x number of positions
+      },
       initGraph() {
         let height = this.height
         let width = this.width
+
         // sets svg with appropriate height and width
         // TODO should be responsive and mobile friendly
         let svg = d3.select('#scoring')
@@ -37,55 +65,33 @@
         const g = svg.append('g')
           .attr('transform', "translate(" + this.margin.left + "," + this.margin.top + ")")
           .attr('class', 'main_group')
-        
-        // get the data averaged out
-
-        //IDEA: timelapse of all week scores
-        let snapshot_data = _.groupBy(snapshot["players"], 'owner_id')
-        let positions = Object.keys(scores["1"]["scores"][0])
 
         // TODO programatically figure out colors
-        let colors = ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f']
+        let colors = ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f', '#ff7f00']
         let colorPos = {
           'QB-0': colors[0],
           'RB-0': colors[1],
           'RB-1': colors[1],
           'WR-0': colors[2],
           'WR-1': colors[2],
+          'WR-2': colors[2],
           'TE-0': colors[3],
           'FLEX-0': colors[4],
+          'FLEX-1': colors[4],
           'K-0': colors[5],
-          'DEF-0': colors[6]
+          'DEF-0': colors[6],
+          'SUPER_FLEX-0': colors[7]
         }
-        let weeks = scores["1"]["scores"].length
-        let maxPos = 0
-        let averagedData = _.map(scores, (d) => {
-          let output = {}
-          let players = []
-          for (let pos in positions) {
-            let score = Math.round(_.meanBy(d["scores"], positions[pos]) * 100) / 100
-            if (score > maxPos) {
-              maxPos = score
-            }
-            players.push({
-              "position": positions[pos],
-              "score": score
-            })
-          }
-          output["players"] = players
-          output["wins"] = snapshot_data[d["owner_id"]][0]["wins"]
-          output["display_name"] = d["display_name"]
-          return output
-        })
-        
-        // y scale
+        let weeks = scores["players"]["1"]["scores"].length // is there a better way to get total weeks?
+
+        // arrange teams by wins
+        let winGroups = _.groupBy(this.averagedPositionData, 'wins')
+        let winKeys = Object.keys(winGroups)
+        let maxWins = parseInt(d3.max(winKeys))
         let winScale = d3.scaleBand()
-          .domain(d3.range(0, weeks + 1, 1))
+          .domain(d3.range(0, maxWins + 1, 1))
           .range([this.height, 0])
 
-        let winGroups = _.groupBy(averagedData, 'wins')
-        // need to preprocess each team 
-        let winKeys = Object.keys(winGroups)
         let maxRow = 0
         _.forEach(winKeys, (d) => {
           let total = winGroups[d].length
@@ -98,11 +104,12 @@
           })
         })
 
+        // average legend
         let averagePositions = []
-        for (let pos in positions) {
-          let position = positions[pos]
+        for (let pos in this.positions) {
+          let position = this.positions[pos]
           let averagePosition = {}
-          averagePosition["score"] = Math.round(_.meanBy(averagedData, (d) => {
+          averagePosition["score"] = Math.round(_.meanBy(this.averagedPositionData, (d) => {
             let posGroup = _.groupBy(d["players"], "position")
             return posGroup[position][0]['score']
           }) * 100) / 100
@@ -110,31 +117,31 @@
           averagePositions.push(averagePosition)
         }
 
-        let boxRange = (width - 70) / (maxRow + (maxRow - 1) /2 ) 
+        let boxRange = (width - 70) / (maxRow + (maxRow - 1) /2 ) //hardcoded, need more programmatic way of defining
         let xScale = d3.scaleLinear()
-          .domain([0, maxPos])
+          .domain([0, this.maxPostionScore])
           .range([0, boxRange])
-        let winRange = _.map(Object.keys(winGroups), d => parseInt(d))
-        winRange = d3.range(d3.min(winRange), d3.max(winRange) + 1, 1)
 
-        let yHeight = 480 / winRange.length                       
+        let winExtent = d3.extent(Object.keys(winGroups), d => parseInt(d))
+        let winRange = d3.range(winExtent[0], winExtent[1] + 1, 1)
+
+        let yHeight = 70 // need to determine more programmatic way for yheight                
         let yScale = d3.scaleBand()
-          .domain(positions)
+          .domain(this.positions)
           .range([0, yHeight])
 
-        width = width - this.margin.left - this.margin.right
+        width = width - this.margin.left - this.margin.right //better to create separate width variable
         let spacing = boxRange / 2
+        // group of pyramids
         let pyramids = g.selectAll('pyramids')
-          .data(averagedData)
+          .data(this.averagedPositionData)
           .enter()
           .append('g')
           .attr('transform', (d, i) => {
-            // width 
             let start = (width/2 - boxRange/2) - ((d.total - 1) * spacing)
             return "translate(" + (start + 2 * spacing * d.placeX) + "," + winScale(d["wins"]) + ")"
           })
-      
-        
+        // bars for each group
         let centeredBars = pyramids.selectAll('bars')
           .data((d) => {
             return d["players"]
@@ -146,13 +153,13 @@
           .attr('width', (d) => {
             return xScale(d['score'])
           })
-          .attr('height', yHeight / 10) // need to figure out optimal height
+          .attr('height', yHeight / 13) // need to figure out optimal height
           .attr('fill', (d) => {
             return colorPos[d['position']]
           })
         
         let names = pyramids.selectAll('labels')
-          .data((d) => {
+          .data((d, i) => {
             return [d["display_name"]]
           })
           .enter()
@@ -165,91 +172,96 @@
           .style('text-anchor', 'middle')
 
         // find average structure and use that as a legend
-
-        let legendYScale = d3.scaleBand()
-          .domain(positions)
-          .range([0, yHeight])
-
-
         let legend = g.append('g')
-          .attr('transform', "translate(" + (this.width - 200) + "," + 0 + ")")
+          .attr('transform', "translate(" + (this.width - 200) + "," + 0 + ")") //200 this is hardcoded
         let legendBars = legend.selectAll('legend')
           .data(averagePositions)
           .enter()
           .append('rect')
           .attr('x', d => (boxRange - xScale(d['score'])) / 2)
-          .attr('y', d => legendYScale(d['position']))
+          .attr('y', d => yScale(d['position']))
           .attr('width', (d) => {
             return xScale(d['score'])
           })
-          .attr('height', yHeight / 10) // need to figure out optimal height
+          .attr('height', yHeight / 13) // need to figure out optimal height
           .attr('fill', (d) => {
             return colorPos[d['position']]
           })
-          // .attr('stroke', 'black')
         
         let labelPositions = legend.selectAll('legendLabels')
           .data(averagePositions)
           .enter()
           .append('text')
           .attr('x', d =>  (boxRange - xScale(d['score'])) / 2 - 10)
-          .attr('y', d => legendYScale(d['position']) + 6)
+          .attr('y', d => yScale(d['position']) + 6)
           .text((d) => {
             return d['position']
           })
-          .attr('fill', '#000000')
-          .style('font-size', '7px')
-          .style('text-anchor', 'end')
+          .attr('class', 'legendLabels')
         
         let labelScores = legend.selectAll('legendScores')
           .data(averagePositions)
           .enter()
           .append('text')
           .attr('x', d => (boxRange - xScale(d['score'])) / 2 + xScale(d['score']) + 5)
-          .attr('y', d => legendYScale(d['position']) + 6)
+          .attr('y', d => yScale(d['position']) + 6)
           .text((d) => {
             return d['score']
           })
-          .attr('fill', '#000000')
-          .style('font-size', '7px')
-          .style('text-anchor', 'start')
+          .attr('class', 'legendScores')
         
         legend.append('text')
-          .attr('x', boxRange / 2)
+          .attr('x', spacing)
           .attr('y', -10)
           .text('Average Position Score')
-          .style('text-anchor', 'middle')
+          .attr('class', 'label')
         
-        let winPlacement = boxRange / 2
         g.append('text')
-          .attr('x', winPlacement)
+          .attr('x', spacing)
           .attr('y', 0)
           .text('# of Wins')
-          .style('text-anchor', 'middle')
+          .attr('class', 'label')
         
         g.selectAll('wins')
           .data(winRange)
           .enter()
           .append('text')
-          .attr('x', winPlacement)
+          .attr('x', spacing)
           .attr('y', (d) => {
-            return winScale(d) + 50
+            return winScale(d) + 50 // what is this number for?
           })
           .text((d) => d)
-          .style('text-anchor', 'middle')
+          .attr('class', 'winLabels')
         
         // title
         g.append('text')
           .attr('x', (width - this.margin.left) / 2)
           .attr('y', -20)
           .text('Fantasy Football Roster Snapshot')
-          .style('text-anchor', 'middle')
-          .style('font-size', '20px')
+          .attr('class', 'headline')
       }
     },
   }
 </script>
 
-<style lang="scss" scoped>
-
+<style>
+.legendScores {
+  font-size: 7px;
+  text-anchor: start;
+}
+.legendLabels {
+  font-size: 7px;
+  text-anchor: end;
+}
+.label {
+  text-anchor: middle;
+}
+.headline {
+  text-anchor: middle;
+  font-size: 20px;
+}
+.winLabels  {
+  text-anchor: middle;
+  font-size: 18px;
+}
 </style>
