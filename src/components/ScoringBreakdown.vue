@@ -8,9 +8,7 @@
   /* eslint-disable */
   import _ from 'lodash';
   import * as d3 from 'd3';
-
-  // outputted files from backend script for week 2
-  import Scores from '../data/week6_output.json';
+  import leagueData from '../data/data.json'
 
   export default {
     data() {
@@ -18,20 +16,42 @@
         height: 600,
         width: 750,
         margin: {top: 30, right: 50, bottom: 100, left: 30},
-        colors: ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c'],
+        colors: ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c', '#fdbf6f', '#ff7f00', '#cab2d6', '#6a3d9a'], //needs to be generic, we don't know how many positions available
         transitionFlag: false,
-        disData: []
+        disData: [],
+        positions: []
       }
     },
     mounted () {
-      this.initGraph();
+      this.initData()
+      this.initGraph()
     },
     methods: {
+      initData() {
+        this.positions = _.uniq(_.map(leagueData["settings"]["starters"], (d) => {
+          return d.split("-")[0]
+        }))
+      },
+      combineRoster(roster) {
+        // need a better programmatic way of combining keys, could be a change on the backend
+        let positions = {}
+        let total = 0
+        _.forEach(Object.keys(roster), (pos) => {
+          let value = roster[pos]
+          let generalPositionName = pos.split("-")[0]
+          if (positions[generalPositionName]) {
+            positions[generalPositionName] = Math.round((positions[generalPositionName] + value) * 100) / 100 // need to take this round function and make it reusable
+          } else {
+            positions[generalPositionName] = value
+          }
+          total = total + value
+        })
+        positions["sub_points"] = total
+        return positions
+      },
       initGraph() {
         let height = this.height
         let width = this.width
-        // need to make more generic, retrieve from settings?
-        let positions = ["QB", "RB", "WR", "TE", "FLEX", "K"]
 
         // sets svg with appropriate height and width
         // TODO should be responsive and mobile friendly
@@ -52,26 +72,16 @@
           .text('Week 6 Positional Scoring Breakdown')
           .style('text-anchor', 'start')
 
-        // combine positons and calculate sub totals
-        // TODO move this processing to the backend
-        // need to handle negative values for all positions not just QB
-        let data = _.map(Scores["players"], (d) => {
-          return {
-            "QB": d["scores"]["QB-0"] > 0 ? d["scores"]["QB-0"] : 0,
-            "RB": d["scores"]["RB-0"] + d["scores"]["RB-1"],
-            "WR": d["scores"]["WR-0"] + d["scores"]["WR-1"],
-            "TE": d["scores"]["TE-0"],
-            "FLEX": d["scores"]["FLEX-0"],
-            "K": d["scores"]["K-0"],
-            "avatar": d["avatar"],
-            "points": d["points"],
-            "sub_points": d["scores"]["QB-0"] + d["scores"]["RB-0"] + d["scores"]["RB-1"] + d["scores"]["WR-0"] + d["scores"]["WR-1"] + d["scores"]["TE-0"] + d["scores"]["FLEX-0"] + d["scores"]["K-0"]
-          }
-        })
+        let currentWeek = leagueData["players"]["1"]["scores"].length //maybe this should come from league settings? a field for current week, options to change week
 
-        data = _.orderBy(data, ['sub_points'], ['desc'])
+        let data = _.orderBy(_.map(leagueData["players"], (player) => {
+          let currentRoster = player["scores"][currentWeek - 1]
+          let combinedRoster = this.combineRoster(currentRoster)
+          combinedRoster["avatar"] = player["avatar"]
+          return combinedRoster
+        }), ['sub_points'], ['desc'])
 
-        this.disData = this.disassembleStack(data, positions)
+        this.disData = this.disassembleStack(data, this.positions)
         let xMax = _.maxBy(data, 'sub_points')['sub_points']
 
         // hardcoded range for length of bars
@@ -89,7 +99,7 @@
         // ex. [{"QB": 5, "WR": 10}]
         // roughly something like this stack output [[0,5],[5, 15]]
         let stack = d3.stack()
-          .keys(positions)
+          .keys(this.positions)
           .order(d3.stackOrderNone)
           .offset(d3.stackOffsetNone)
         
@@ -106,8 +116,9 @@
           })
 
         // creates a rectangle for each pairing in the stack
+        let numPlayers = Object.keys(leagueData["players"]).length
         let yScale = d3.scaleBand()
-          .domain([0,1,2,3,4,5,6,7,8,9,10,11]) // this is hardcoded
+          .domain(d3.range(0, numPlayers, 1)) // this is hardcoded
           .range([0, this.height - this.margin.top - this.margin.bottom])
 
         // only change is the xscale
@@ -156,7 +167,6 @@
         // create a rectangle for each color
         let legend = g.append('g')
           .on('click', (d) => {
-            console.log('clicked')
             this.transitionFlag = !this.transitionFlag
             this.disassemble(xScale, series)
           })
@@ -164,7 +174,7 @@
         legend.append('g')
           .attr('class', 'legends')
           .selectAll('bars')
-          .data(this.colors)
+          .data(this.positions)
           .enter().append('rect')
             .attr('x', (d, i) => {
               return i * 40 + this.margin.left
@@ -172,20 +182,20 @@
             .attr('y', this.height - this.margin.bottom - this.margin.top)
             .attr('width', 40)
             .attr('height', 10)
-            .attr('fill', (d) => {return d})
+            .attr('fill', (d, i) => {return this.colors[i]})
             // .attr('stroke', 'black')
 
         // create a label for each position will coincide with color
         legend.append('g')
           .attr('class', 'labels')
           .selectAll('label')
-          .data(this.colors)
+          .data(this.positions)
           .enter().append('text')
             .attr('x', (d, i) => {
               return i * 40 + this.margin.left + 20
             })
             .attr('y', this.height - this.margin.bottom - this.margin.top / 2 + 5)
-            .text((d,i) => positions[i])
+            .text((d,i) => this.positions[i])
             .style('font-size', '10px')
             .style('text-anchor', 'middle')
         
@@ -195,7 +205,7 @@
           .selectAll('points')
           .data(data)
           .enter().append('text')
-            .attr('x', (d, i) => xScale(series[positions.length - 1][i][1]) + 4)
+            .attr('x', (d, i) => xScale(series[this.positions.length - 1][i][1]) + 4)
             .attr('y', (d, i) => yScale(i) + 9)
             .text((d) => d["sub_points"].toFixed(0))
             .style('font-size', '10px')
@@ -245,12 +255,13 @@
           .attr('width', (d) => {
             return this.transitionFlag ? this.disData[d[2]].scale(d[1]) - this.disData[d[2]].scale(d[0]) : xScale(d[1]) - xScale(d[0])
           })
-        
+        let lastPosIndex = this.positions.length - 1
+        let lastPos = this.positions[lastPosIndex]
         let points = d3.selectAll('.point')
           .transition()
           .duration(3000)
           .attr('x', (d, i) => {
-            return this.transitionFlag ? this.disData["K"].scale(this.disData["K"].max) + 10 : xScale(series[5][i][1]) + 4 //5 is hardcoded length of positions
+            return this.transitionFlag ? this.disData[lastPos].scale(this.disData[lastPos].max) + 10 : xScale(series[lastPosIndex][i][1]) + 4 //5 is hardcoded length of positions
           })
       }
     },
