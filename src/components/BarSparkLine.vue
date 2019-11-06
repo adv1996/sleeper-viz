@@ -15,7 +15,7 @@
     data() {
       return {
         height: 600,
-        width: 300,
+        width: 350,
         margin: {top: 10, right: 10, bottom: 10, left: 20},
       }
     },
@@ -58,7 +58,7 @@
           .range([0, height/12])
 
         let rosterGroups = _.groupBy(data, 'roster_id')
-        
+
         let teamScale = d3.scaleBand()
           .domain(Object.keys(rosterGroups))
           .range([height, 0]);
@@ -105,7 +105,7 @@
           })
           .attr('width', 20)
           .attr('height', 20)
-          .attr('x', d => -25)
+          .attr('x', d => -20)
           .attr('y', d => 15)
       }
     },

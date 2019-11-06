@@ -117,7 +117,8 @@
           averagePositions.push(averagePosition)
         }
 
-        let boxRange = (width - 70) / (maxRow + (maxRow - 1) /2 ) //hardcoded, need more programmatic way of defining
+        // let boxRange = (width - 70) / (maxRow + (maxRow - 1) /2 ) //hardcoded, need more programmatic way of defining
+        let boxRange = 125
         let xScale = d3.scaleLinear()
           .domain([0, this.maxPostionScore])
           .range([0, boxRange])

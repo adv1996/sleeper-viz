@@ -10,8 +10,8 @@
   import * as d3 from 'd3';
 
   // outputted files from backend script for week 2
-  // import scores from '../data/snapshot_output.json';
-  import scores from '../data/espn_output.json';
+  import scores from '../data/snapshot_output.json';
+  // import scores from '../data/espn_output.json';
 
   export default {
     data() {
@@ -83,8 +83,8 @@
           .append('image')
           .attr('xlink:href', (d) => {
             // flip between sleeper and espn
-            // return 'https://sleepercdn.com/avatars/thumbs/' + d["avatar"]
-            return d["avatar"]
+            return 'https://sleepercdn.com/avatars/thumbs/' + d["avatar"]
+            // return d["avatar"]
           })
           .attr('width', avatarDimension)
           .attr('height', avatarDimension)
@@ -132,7 +132,7 @@
         svg.append('text')
           .attr('x', xScale(averageFor) + this.margin.left - 27)
           .attr('y', this.margin.top - 20)
-          .text('Week 7') // need to update date based on current week
+          .text('Week 9') // need to update date based on current week
           .attr('class', 'label s')
 
         d3.selectAll(".domain").remove();

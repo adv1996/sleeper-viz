@@ -7,10 +7,11 @@
 <script>
 // import ScoringBreakdown from './components/BoxWhisker.vue'
 // import ScoringBreakdown from './components/BarSparkLine.vue'
-import ScoringBreakdown from './components/ScoringBreakdown.vue'
-// import ScoringBreakdown from './components/PointsForAgainst.vue'
+// import ScoringBreakdown from './components/ScoringBreakdown.vue'
+import ScoringBreakdown from './components/PointsForAgainst.vue'
 // import ScoringBreakdown from './components/WeeklyScores.vue'
 // import ScoringBreakdown from './components/Pyramids.vue'
+// import ScoringBreakdown from './components/Acquisitions.vue'
 
 export default {
   name: 'app',
