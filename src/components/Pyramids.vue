@@ -14,7 +14,7 @@
   export default {
     data() {
       return {
-        height: 850,
+        height: 925,
         width: 900,
         margin: {top: 40, right: 20, bottom: 10, left: 20},
         averagedPositionData: [],
@@ -90,7 +90,7 @@
         let maxWins = parseInt(d3.max(winKeys))
         let winScale = d3.scaleBand()
           .domain(d3.range(0, maxWins + 1, 1))
-          .range([this.height, 0])
+          .range([this.height - 100, 0])
 
         let maxRow = 0
         _.forEach(winKeys, (d) => {
@@ -126,7 +126,7 @@
         let winExtent = d3.extent(Object.keys(winGroups), d => parseInt(d))
         let winRange = d3.range(winExtent[0], winExtent[1] + 1, 1)
 
-        let yHeight = 70 // need to determine more programmatic way for yheight                
+        let yHeight = 65 // need to determine more programmatic way for yheight                
         let yScale = d3.scaleBand()
           .domain(this.positions)
           .range([0, yHeight])

@@ -10,7 +10,7 @@
   import * as d3 from 'd3';
 
   import scores from '../data/weeklyScores_output.json';
-  import teams from '../data/week9_output.json';
+  import teams from '../data/week10_output.json';
   // import scores from '../data/espn_weekly_scores.json';
   // import teams from '../data/espn_data.json';
 
@@ -144,7 +144,7 @@
         g.append('text')
           .attr('x', this.width / 2 - 40)
           .attr('y', 20)
-          .text('Scores Through Week 9')
+          .text('Scores Through Week 10')
         
         // let espnRosterIds = _.groupBy(teams['teams'], 'id')
 

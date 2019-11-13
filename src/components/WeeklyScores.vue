@@ -15,8 +15,8 @@
   export default {
     data() {
       return {
-        height: 600,
-        width: 500,
+        height: 625,
+        width: 750,
         margin: {top: 50, right: 50, bottom: 50, left: 50},
       }
     },
@@ -39,10 +39,10 @@
           .attr('class', 'main_group')
         
         g.append('text')
-          .attr('x', 0)
+          .attr('x', width/2 - 40) //this is hardcoded need to change
           .attr('y', -this.margin.top / 2)
-          .text('Range of Weekly Scores Thru 5 Weeks')
-          .style('text-anchor', 'start')
+          .text('Range of Weekly Scores Thru 9 Weeks')
+          .style('text-anchor', 'middle')
         
         let data = scores["games"]
         let maxScore = d3.max(data, d => d.points)
@@ -65,16 +65,32 @@
         let yScale = d3.scaleBand()
           .domain(_.map(players, d => d["roster_id"]))
           .range([height - this.margin.top - this.margin.bottom, 0]);
-        
-        g.selectAll('games')
+      
+        // d3 force simulation to beeswarm
+        let radius = 5
+        let playerSimulation = d3.forceSimulation(data)
+          .force("collide", d3.forceCollide([radius]))
+          .force("x", d3.forceX((d) => {
+            return xScale(d['points'])
+          }).strength([1]))
+          .force("y", d3.forceY((d) => {
+            return yScale(d['roster_id'])
+          }).strength([1]))
+          .on('tick', playerTick) //multiple ticks can correspond to different simulations
+
+        let gameNodes = g.selectAll('games')
           .data(data)
           .enter()
           .append('circle')
-            .attr('cx', d => xScale(d['points']))
-            .attr('cy', d => yScale(d['roster_id']))
-            .attr('r', 5)
+            .attr('r', radius)
             .attr('fill', d => d['outcome'] === "win" ? '#67a9cf' : '#ef8a62')
             .attr('stroke', 'black')
+
+        function playerTick() {
+          gameNodes
+            .attr('cx', (d) => d.x)
+            .attr('cy', (d) => d.y)
+        }
 
         g.selectAll('avatars')
           .data(players)
