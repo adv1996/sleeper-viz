@@ -1,0 +1,49 @@
+// putting a pause on trades
+// let tradeTransactions = acquisitions["weeks"][week]["trades"]
+// let trades = g.selectAll('trades')
+//   .data(tradeTransactions)
+//   .enter()
+//   .append('line')
+//   .attr('x1', (d) => {
+//     return rosterIds[d.source].placeX
+//   })
+//   .attr('y1', (d) => {
+//     return yScale(rosterIds[d.source].index)
+//   })
+//   .attr('x2', (d) => {
+//     return rosterIds[d.target].placeX
+//   })
+//   .attr('y2', (d) => {
+//     return yScale(rosterIds[d.target].index)
+//   })
+//   .attr('class', 'trades')
+
+// let playerNodes = g.selectAll('player')
+//   .data(this.players)
+//   .enter()
+//   .append('circle')
+//   .attr('r', radius)
+//   .attr('class', 'player')
+//   .attr('fill', d => this.colors[d.type])
+//   .attr('stroke', 'black')
+
+// let playerSimulation = d3.forceSimulation(this.players)
+//   .force("collide", d3.forceCollide([radius]))
+//   .force("x", d3.forceX((d) => {
+//     return rosterIds[d.roster_id].placeX
+//   }).strength([1]))
+//   .force("y", d3.forceY((d) => {
+//     return yScale(rosterIds[d.roster_id].index) + (rosterIds[d.roster_id].total / 2 ) * yScale.bandwidth() - yScale.bandwidth()
+//   }).strength([1]))
+//   .on('tick', playerTick) //multiple ticks can correspond to different simulations
+
+// function playerTick() {
+//   playerNodes
+//     .attr('cx', (d) => d.x)
+//     .attr('cy', (d) => d.y)
+// }
+
+// Animate Teams over Week
+// Link Teams Via Trades
+// Center Vertical Teams
+// Separate Teams and Player functions

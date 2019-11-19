@@ -1,106 +1,272 @@
 {
   "weeks": {
     "week0": {
-      "players": {
-        "1": {
-          "acquisitions": {
-            "draft": ["4123", "2324", "4124", "2322", "4121", "2320"],
-            "trade": ["11", "21", "31", "41"],
-            "waiver": ["131", "122", "324"]
-          },
-          "wins": 1,
-          "roster_id": "1"
-        },
-        "2": {
-          "acquisitions": {
-            "draft": ["4123", "2324", "4124"],
-            "trade": ["11", "21", "31", "41"],
-            "waiver": ["131", "122", "324", "2322", "4121", "2320"]
-          },
-          "wins": 3,
-          "roster_id": "2"
-        },
-        "3": {
-          "acquisitions": {
-            "draft": ["4123", "2324", "4124"],
-            "trade": ["11", "21", "31", "41"],
-            "waiver": ["131", "122", "324", "2322", "4121", "2320"]
-          },
-          "wins": 3,
-          "roster_id": "3"
-        },
-        "5": {
-          "acquisitions": {
-            "draft": ["4123", "2324", "4124"],
-            "trade": ["11", "21", "31", "41"],
-            "waiver": ["131", "122", "324", "2322", "4121", "2320"]
-          },
-          "wins": 2,
-          "roster_id": "5"
-        },
-        "6": {
-          "acquisitions": {
-            "draft": ["4123", "2324", "4124"],
-            "trade": ["11", "21", "31", "41"],
-            "waiver": ["131", "122", "324", "2322", "4121", "2320"]
-          },
-          "wins": 3,
-          "roster_id": "6"
-        }
-      },
-      "trades": [
+      "players": [
         {
-          "source": "1",
-          "target": "2",
-          "players": 3
+          "acquisitions": {
+            "draft": ["4123", "4123", "11", "131"],
+            "trade": [],
+            "waiver": []
+          },
+          "wins": 0,
+          "roster_id": "1",
+          "display": "shahil"
         },
         {
-          "source": "3",
-          "target": "2",
-          "players": 3
+          "acquisitions": {
+            "draft": ["21", "32", "12", "12"],
+            "trade": [],
+            "waiver": []
+          },
+          "wins": 0,
+          "roster_id": "2",
+          "display": "advaith"
+        },
+        {
+          "acquisitions": {
+            "draft": ["21", "32", "12", "12"],
+            "trade": [],
+            "waiver": []
+          },
+          "wins": 0,
+          "roster_id": "3",
+          "display": "nihar"
+        },
+        {
+          "acquisitions": {
+            "draft": ["21", "32", "12", "12"],
+            "trade": [],
+            "waiver": []
+          },
+          "wins": 0,
+          "roster_id": "4",
+          "display": "chirag"
+        },
+        {
+          "acquisitions": {
+            "draft": ["21", "32", "12", "12"],
+            "trade": [],
+            "waiver": []
+          },
+          "wins": 0,
+          "roster_id": "5",
+          "display": "pranav"
+        },
+        {
+          "acquisitions": {
+            "draft": ["21", "32", "12", "12"],
+            "trade": [],
+            "waiver": []
+          },
+          "wins": 0,
+          "roster_id": "6",
+          "display": "wang"
         }
       ]
     },
     "week1": {
-      "players": {
-        "1": {
+      "players": [
+        {
           "acquisitions": {
-            "draft": ["4123", "2324", "4124", "2322", "4121", "2320", "11", "21", "31", "41"],
+            "draft": ["4123"],
             "trade": [],
-            "waiver": ["131", "122", "324"]
+            "waiver": ["131", "32", "11"]
           },
           "wins": 1,
-          "roster_id": "1"
+          "roster_id": "1",
+          "display": "shahil"
         },
-        "2": {
+        {
           "acquisitions": {
-            "draft": ["4123", "2324", "4124"],
-            "trade": ["11", "21", "31", "41"],
-            "waiver": ["131", "122", "324", "2322", "4121", "2320"]
+            "draft": ["21", "32", "12", "12"],
+            "trade": [],
+            "waiver": []
           },
-          "wins": 3,
-          "roster_id": "2"
+          "wins": 1,
+          "roster_id": "2",
+          "display": "advaith"
         },
-        "3": {
+        {
           "acquisitions": {
-            "draft": ["4123", "2324", "4124"],
-            "trade": ["11", "21", "31", "41"],
-            "waiver": ["131", "122", "324", "2322", "4121", "2320"]
+            "draft": ["21", "32", "12", "12"],
+            "trade": [],
+            "waiver": []
           },
-          "wins": 3,
-          "roster_id": "3"
+          "wins": 1,
+          "roster_id": "3",
+          "display": "nihar"
         },
-        "5": {
+        {
           "acquisitions": {
-            "draft": ["4123", "2324", "4124"],
-            "trade": ["11", "21", "31", "41"],
-            "waiver": ["131", "122", "324", "2322", "4121", "2320"]
+            "draft": ["21", "32", "12", "12"],
+            "trade": [],
+            "waiver": []
+          },
+          "wins": 0,
+          "roster_id": "4",
+          "display": "chirag"
+        },
+        {
+          "acquisitions": {
+            "draft": ["21", "32", "12", "12"],
+            "trade": [],
+            "waiver": []
+          },
+          "wins": 0,
+          "roster_id": "5",
+          "display": "pranav"
+        },
+        {
+          "acquisitions": {
+            "draft": ["21", "32", "12", "12"],
+            "trade": [],
+            "waiver": []
+          },
+          "wins": 0,
+          "roster_id": "6",
+          "display": "wang"
+        }
+      ]
+    },
+    "week2": {
+      "players": [
+        {
+          "acquisitions": {
+            "draft": ["4123"],
+            "trade": [],
+            "waiver": ["131", "32", "11"]
           },
           "wins": 2,
-          "roster_id": "5"
+          "roster_id": "1",
+          "display": "shahil"
+        },
+        {
+          "acquisitions": {
+            "draft": ["21", "32", "12", "12"],
+            "trade": [],
+            "waiver": []
+          },
+          "wins": 2,
+          "roster_id": "2",
+          "display": "advaith"
+        },
+        {
+          "acquisitions": {
+            "draft": ["21", "32", "12", "12"],
+            "trade": [],
+            "waiver": []
+          },
+          "wins": 1,
+          "roster_id": "3",
+          "display": "nihar"
+        },
+        {
+          "acquisitions": {
+            "draft": ["21", "32", "12", "12"],
+            "trade": [],
+            "waiver": []
+          },
+          "wins": 0,
+          "roster_id": "4",
+          "display": "chirag"
+        },
+        {
+          "acquisitions": {
+            "draft": ["21", "32", "12", "12"],
+            "trade": [],
+            "waiver": []
+          },
+          "wins": 0,
+          "roster_id": "5",
+          "display": "pranav"
+        },
+        {
+          "acquisitions": {
+            "draft": ["21", "32", "12", "12"],
+            "trade": [],
+            "waiver": []
+          },
+          "wins": 0,
+          "roster_id": "6",
+          "display": "wang"
         }
-      },
-      "trades": []
+      ]
+    },
+    "week3": {
+      "players": [
+        {
+          "acquisitions": {
+            "draft": ["4123"],
+            "trade": ["11"],
+            "waiver": ["131", "32"]
+          },
+          "wins": 3,
+          "roster_id": "1",
+          "display": "shahil"
+        },
+        {
+          "acquisitions": {
+            "draft": ["21", "32", "12"],
+            "trade": ["12"],
+            "waiver": []
+          },
+          "wins": 2,
+          "roster_id": "2",
+          "display": "advaith"
+        },
+        {
+          "acquisitions": {
+            "draft": ["21", "32", "12", "12"],
+            "trade": [],
+            "waiver": []
+          },
+          "wins": 1,
+          "roster_id": "3",
+          "display": "nihar"
+        },
+        {
+          "acquisitions": {
+            "draft": ["21", "32", "12", "12"],
+            "trade": [],
+            "waiver": []
+          },
+          "wins": 0,
+          "roster_id": "4",
+          "display": "chirag"
+        },
+        {
+          "acquisitions": {
+            "draft": ["21", "32", "12", "12"],
+            "trade": [],
+            "waiver": []
+          },
+          "wins": 0,
+          "roster_id": "5",
+          "display": "pranav"
+        },
+        {
+          "acquisitions": {
+            "draft": ["21", "32", "12", "12"],
+            "trade": [],
+            "waiver": []
+          },
+          "wins": 0,
+          "roster_id": "6",
+          "display": "wang"
+        }
+      ],
+      "trades": [
+        {
+          "source": "1",
+          "target": "2",
+          "players": 2
+        },
+        {
+          "source": "3",
+          "target": "2",
+          "players": 2
+        }
+      ]
     }
   }
 }
