@@ -72,6 +72,7 @@
           'QB-0': colors[0],
           'RB-0': colors[1],
           'RB-1': colors[1],
+          'RB-2': colors[1],
           'WR-0': colors[2],
           'WR-1': colors[2],
           'WR-2': colors[2],
@@ -105,6 +106,7 @@
         })
 
         // average legend
+        // this logic shoudld be separated and generic enough for max and min legends
         let averagePositions = []
         for (let pos in this.positions) {
           let position = this.positions[pos]
@@ -173,6 +175,7 @@
           .style('text-anchor', 'middle')
 
         // find average structure and use that as a legend
+        // this needs to be relocated to a separate function
         let legend = g.append('g')
           .attr('transform', "translate(" + (this.width - 200) + "," + 0 + ")") //200 this is hardcoded
         let legendBars = legend.selectAll('legend')
@@ -238,7 +241,7 @@
         g.append('text')
           .attr('x', (width - this.margin.left) / 2)
           .attr('y', -20)
-          .text('Fantasy Football Roster Snapshot')
+          .text('Fantasy Football Roster Snapshot') // incorporate actual league name
           .attr('class', 'headline')
       }
     },
