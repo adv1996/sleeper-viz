@@ -9,10 +9,10 @@
   import _ from 'lodash';
   import * as d3 from 'd3';
 
-  import scores from '../data/weeklyScores_output.json';
-  import teams from '../data/week10_output.json';
-  // import scores from '../data/espn_weekly_scores.json';
-  // import teams from '../data/espn_data.json';
+  // import scores from '../data/weeklyScores_output.json';
+  // import teams from '../data/week10_output.json';
+  import scores from '../data/espn_weekly_scores.json';
+  import teams from '../data/espn_data.json';
 
   export default {
     data() {
@@ -54,7 +54,6 @@
         
         let bwdata = _.map(data, (d) => {
           let points = _.map(d, d => d.points).sort(sortNumber)
-          console.log(points, d3.quantile(points, 0.25), d3.quantile(points, 0.75))
           return {
             "max": d3.max(points),
             "min": d3.min(points),
@@ -141,36 +140,37 @@
           .attr('stroke', 'red')
           .style('stroke-dasharray', "6,6")
         
+        let totalWeeks = _.maxBy(boxScores, 'week')
         g.append('text')
           .attr('x', this.width / 2 - 40)
           .attr('y', 20)
-          .text('Scores Through Week 10')
+          .text('Scores Through Week ' + totalWeeks.week)
         
-        // let espnRosterIds = _.groupBy(teams['teams'], 'id')
+        let espnRosterIds = _.groupBy(teams['teams'], 'id')
 
-        boxes.selectAll('avatars')
-          .data(d => [d])
-          .enter()
-          .append('image')
-          .attr('xlink:href', (d) => {
-            let avatar = teams["players"][d.roster_id].avatar
-            return 'https://sleepercdn.com/avatars/thumbs/' + avatar
-          })
-          .attr('width', 17)
-          .attr('height', 17)
-          .attr('x', d => xScale(d.roster_id) - 8)
-          .attr('y', d => yScale(d.max) - 25)
-        // boxes.selectAll('labels')
+        // boxes.selectAll('avatars')
         //   .data(d => [d])
         //   .enter()
-        //   .append('text')
-        //   .attr('x', d => xScale(d.roster_id))
-        //   .attr('y', d => yScale(d.max) - 15)
-        //   .style('font-size', '12px')
-        //   .style('text-anchor', 'middle')
-        //   .text((d) => {
-        //     return espnRosterIds[d.roster_id][0].abbrev
+        //   .append('image')
+        //   .attr('xlink:href', (d) => {
+        //     let avatar = teams["players"][d.roster_id].avatar
+        //     return 'https://sleepercdn.com/avatars/thumbs/' + avatar
         //   })
+        //   .attr('width', 17)
+        //   .attr('height', 17)
+        //   .attr('x', d => xScale(d.roster_id) - 8)
+        //   .attr('y', d => yScale(d.max) - 25)
+        boxes.selectAll('labels')
+          .data(d => [d])
+          .enter()
+          .append('text')
+          .attr('x', d => xScale(d.roster_id))
+          .attr('y', d => yScale(d.max) - 15)
+          .style('font-size', '12px')
+          .style('text-anchor', 'middle')
+          .text((d) => {
+            return espnRosterIds[d.roster_id][0].abbrev
+          })
         let yAxis = d3.axisLeft()
           .scale(yScale)
           .tickSizeInner([0])

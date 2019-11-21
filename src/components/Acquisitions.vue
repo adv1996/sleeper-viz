@@ -174,7 +174,10 @@
           .style('text-anchor', 'middle')
           .style('font-size', '10px')
           .attr('class', 'teamNames')
-          .text((d) => d.display)
+          .text((d, i) => 
+            //d.display
+            "player" + i
+          )
         
         let playerNodes = g.selectAll('player')
           .data(this.players)

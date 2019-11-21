@@ -69,7 +69,7 @@
         svg.append('text')
           .attr('x', 38)
           .attr('y', 15)
-          .text('Week 6 Positional Scoring Breakdown')
+          .text('Week 11 Positional Scoring Breakdown')
           .style('text-anchor', 'start')
 
         let currentWeek = leagueData["players"]["1"]["scores"].length //maybe this should come from league settings? a field for current week, options to change week
