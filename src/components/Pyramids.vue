@@ -14,8 +14,8 @@
   export default {
     data() {
       return {
-        height: 925,
-        width: 900,
+        height: 900,
+        width: 700,
         margin: {top: 40, right: 20, bottom: 10, left: 20},
         averagedPositionData: [],
         positions: [],
@@ -34,7 +34,12 @@
           let output = {}
           let players = []
           for (let pos in this.positions) {
-            let score = Math.round(_.meanBy(d["scores"], this.positions[pos]) * 100) / 100
+            console.log(pos, this.positions)
+            let averagePos = _.map(d["scores"], (week) => {
+              console.log(this.positions[pos])
+              return week["players"][this.positions[pos]]
+            })
+            let score = Math.round(d3.mean(averagePos) * 100) / 100
             if (score > this.maxPostionScore) { // might need to separate this out
               this.maxPostionScore = score
             }
@@ -89,9 +94,6 @@
         let winGroups = _.groupBy(this.averagedPositionData, 'wins')
         let winKeys = Object.keys(winGroups)
         let maxWins = parseInt(d3.max(winKeys))
-        let winScale = d3.scaleBand()
-          .domain(d3.range(0, maxWins + 1, 1))
-          .range([this.height - 100, 0])
 
         let maxRow = 0
         _.forEach(winKeys, (d) => {
@@ -128,22 +130,29 @@
         let winExtent = d3.extent(Object.keys(winGroups), d => parseInt(d))
         let winRange = d3.range(winExtent[0], winExtent[1] + 1, 1)
 
-        let yHeight = 65 // need to determine more programmatic way for yheight                
+        let winScale = d3.scaleBand()
+          .domain(winRange)
+          .range([height - 100, 0])
+          .paddingInner(0.3)
+
+        let yHeight = winScale.bandwidth() - 17// need to determine more programmatic way for yheight                
         let yScale = d3.scaleBand()
+          .paddingInner(0.2)
           .domain(this.positions)
           .range([0, yHeight])
 
         width = width - this.margin.left - this.margin.right //better to create separate width variable
-        let spacing = boxRange / 2
+        let spacing = boxRange / 2 + 40
         // group of pyramids
         let pyramids = g.selectAll('pyramids')
           .data(this.averagedPositionData)
           .enter()
           .append('g')
           .attr('transform', (d, i) => {
-            let start = (width/2 - boxRange/2) - ((d.total - 1) * spacing)
-            return "translate(" + (start + 2 * spacing * d.placeX) + "," + winScale(d["wins"]) + ")"
+            let start = ((width/2 - boxRange/2) - ((d.total - 1) * spacing)) + 2 * spacing * d.placeX
+            return "translate(" + start + "," + winScale(d["wins"]) + ")"
           })
+        spacing = boxRange / 2
         // bars for each group
         let centeredBars = pyramids.selectAll('bars')
           .data((d) => {
@@ -156,7 +165,7 @@
           .attr('width', (d) => {
             return xScale(d['score'])
           })
-          .attr('height', yHeight / 13) // need to figure out optimal height
+          .attr('height', yScale.bandwidth())
           .attr('fill', (d) => {
             return colorPos[d['position']]
           })
@@ -177,7 +186,7 @@
         // find average structure and use that as a legend
         // this needs to be relocated to a separate function
         let legend = g.append('g')
-          .attr('transform', "translate(" + (this.width - 200) + "," + 0 + ")") //200 this is hardcoded
+          .attr('transform', "translate(" + (this.width - 175) + "," + 0 + ")") //200 this is hardcoded
         let legendBars = legend.selectAll('legend')
           .data(averagePositions)
           .enter()
@@ -187,7 +196,7 @@
           .attr('width', (d) => {
             return xScale(d['score'])
           })
-          .attr('height', yHeight / 13) // need to figure out optimal height
+          .attr('height', yScale.bandwidth())
           .attr('fill', (d) => {
             return colorPos[d['position']]
           })
@@ -221,18 +230,18 @@
           .attr('class', 'label')
         
         g.append('text')
-          .attr('x', spacing)
+          .attr('x', 14)
           .attr('y', 0)
           .text('# of Wins')
           .attr('class', 'label')
+          
         
         g.selectAll('wins')
           .data(winRange)
           .enter()
           .append('text')
-          .attr('x', spacing)
-          .attr('y', (d) => {
-            return winScale(d) + 50 // what is this number for?
+          .attr('transform', (d, i) => {
+            return "translate(" + (14) + "," + (winScale(d) + spacing / 2) + ")"
           })
           .text((d) => d)
           .attr('class', 'winLabels')
